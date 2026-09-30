@@ -117,7 +117,8 @@ raspberry-pi-laser-triangulation/
 │   ├── figures/calibration/   # Calibration plots
 │   ├── measurements/          # Height-measurement output
 │   └── tables/                 # Calibration analysis tables
-├── images/                    # Supporting project images
+├── images/
+│   └── laser_spot/            # Setup photo, laser spot references, geometry, and 3D design
 └── docs/
     ├── report/                # Project report
     └── presentation/          # Project presentation
