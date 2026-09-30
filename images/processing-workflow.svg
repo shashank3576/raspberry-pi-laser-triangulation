@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="270" viewBox="0 0 1200 270" role="img" aria-labelledby="title desc">
+<title id="title">Laser triangulation processing workflow</title><desc id="desc">Workflow from camera capture through red spot detection, centroid extraction, pixel shift, calibration model, and height estimate.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1728"/><stop offset="1" stop-color="#172c43"/></linearGradient><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#f45b6c"/></marker></defs>
+<rect width="1200" height="270" rx="18" fill="url(#bg)"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif" text-anchor="middle">
+  <text x="600" y="34" fill="#dce8f6" font-size="14" font-weight="700" letter-spacing="2">FROM PIXELS TO PHYSICAL HEIGHT</text>
+  <g fill="#1b344d" stroke="#5b7897" stroke-width="1.5">
+    <rect x="28" y="82" width="160" height="94" rx="12"/><rect x="224" y="82" width="160" height="94" rx="12"/><rect x="420" y="82" width="160" height="94" rx="12"/><rect x="616" y="82" width="160" height="94" rx="12"/><rect x="812" y="82" width="160" height="94" rx="12"/><rect x="1008" y="82" width="164" height="94" rx="12"/>
+  </g>
+  <g fill="#ff6877" font-size="12" font-weight="700">
+    <text x="108" y="108">01</text><text x="304" y="108">02</text><text x="500" y="108">03</text><text x="696" y="108">04</text><text x="892" y="108">05</text><text x="1090" y="108">06</text>
+  </g>
+  <g fill="#f2f7fd" font-size="15" font-weight="650">
+    <text x="108" y="133">Image capture</text><text x="304" y="133">Red-spot</text><text x="304" y="151">detection</text><text x="500" y="133">Centroid</text><text x="500" y="151">estimation</text><text x="696" y="133">Pixel shift</text><text x="892" y="133">Calibration</text><text x="892" y="151">model</text><text x="1090" y="133">Height</text><text x="1090" y="151">estimate</text>
+  </g>
+  <g stroke="#f45b6c" stroke-width="2" marker-end="url(#arrow)"><path d="M190 129H216"/><path d="M386 129H412"/><path d="M582 129H608"/><path d="M778 129H804"/><path d="M974 129H1000"/></g>
+  <text x="600" y="220" fill="#9eb4cb" font-size="13">A fresh 0 mm reference compensates for common setup shifts before estimating object height.</text>
+</g></svg>
