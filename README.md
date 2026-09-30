@@ -47,15 +47,23 @@ The physical arrangement matters: changing the camera, laser, target geometry, f
 
 ## Setup and design references
 
-| Triangulation geometry | 3D design |
-|---|---|
-| ![Laser triangulation geometry](images/laser_spot/Triangulation%20geometry.png) | ![Three-dimensional design reference](images/laser_spot/3D%20design.png) |
+### Triangulation geometry
+
+![Laser triangulation geometry](images/laser_spot/Triangulation%20geometry.png)
+
+### 3D design reference
+
+![Three-dimensional design reference](images/laser_spot/3D%20design.png)
 
 ### Laser spot examples
 
-| Laser dot | Reference image |
-|---|---|
-| ![Laser dot captured by the camera](images/laser_spot/Laser%20dot.jpg) | ![Laser spot reference](images/laser_spot/laser_spot_reference_01.jpg) |
+**Laser dot captured by the camera**
+
+![Laser dot captured by the camera](images/laser_spot/Laser%20dot.jpg)
+
+**Additional laser spot reference**
+
+![Laser spot reference](images/laser_spot/laser_spot_reference_01.jpg)
 
 These images illustrate the spot that the detection pipeline is designed to locate.
 
