@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/Calibration-0%E2%80%9350%20mm-2E8B57" alt="Calibration range: 0 to 50 mm">
 </p>
 
-[System](#system-overview) · [Measurement principle](#measurement-principle) · [Calibration results](#calibration-results) · [Run](#run-the-project) · [Documentation](#documentation)
+[System](#system-overview) · [Measurement principle](#measurement-principle) · [Calibration results](#calibration-results) · [Run](#run-the-project) · [Technical overview](docs/TECHNICAL_OVERVIEW.md)
 
 ---
 
