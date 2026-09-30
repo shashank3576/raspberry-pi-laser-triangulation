@@ -84,32 +84,41 @@ These images illustrate the target feature used by the spot-detection pipeline.
 
 The supplied model uses calibration heights of 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 34, 40, 46, and 50 mm.
 
-| Metric | Supplied result |
-|---|---:|
-| Selected model | Rational |
-| Leave-one-out cross-validation RMSE | **0.245 mm** |
-| Maximum absolute leave-one-out error | **0.510 mm** |
-| Calibration interval | 0–50 mm |
+<table>
+  <tr>
+    <td align="center" width="25%"><strong>0.245 mm</strong><br><sub>Leave-one-out RMSE</sub></td>
+    <td align="center" width="25%"><strong>0.510 mm</strong><br><sub>Maximum absolute LOO error</sub></td>
+    <td align="center" width="25%"><strong>0–50 mm</strong><br><sub>Calibration interval</sub></td>
+    <td align="center" width="25%"><strong>Rational</strong><br><sub>Selected model</sub></td>
+  </tr>
+</table>
 
 > **Important:** these errors come from leave-one-out cross-validation on the calibration dataset. They are not a guarantee of accuracy on new objects or under changed conditions. Independent measurements at known heights are needed to assess real-world performance.
 
 ### Calibration plots
 
-**Height versus horizontal pixel position**
-
-![Height versus horizontal pixel position](results/figures/calibration/height_vs_pixel_position.jpg)
-
-**Calibration fit comparison**
-
-![Calibration fit comparison](results/figures/calibration/calibration_fit_comparison.jpg)
-
-**Leave-one-out error comparison**
-
-![Leave-one-out error comparison](results/figures/calibration/leave_one_out_error_comparison.jpg)
-
-**Pixel-position standard deviation**
-
-![Pixel-position standard deviation](results/figures/calibration/pixel_position_standard_deviation.jpg)
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Height calibration curve</strong><br>
+      <img src="results/figures/calibration/height_vs_pixel_position.jpg" alt="Measured height versus horizontal pixel position" width="100%">
+    </td>
+    <td width="50%" valign="top">
+      <strong>Candidate model comparison</strong><br>
+      <img src="results/figures/calibration/calibration_fit_comparison.jpg" alt="Comparison of calibration model fits" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Leave-one-out validation error</strong><br>
+      <img src="results/figures/calibration/leave_one_out_error_comparison.jpg" alt="Leave-one-out error comparison" width="100%">
+    </td>
+    <td width="50%" valign="top">
+      <strong>Spot-position repeatability</strong><br>
+      <img src="results/figures/calibration/pixel_position_standard_deviation.jpg" alt="Standard deviation of laser spot pixel position" width="100%">
+    </td>
+  </tr>
+</table>
 
 The 40 mm calibration point has notably higher horizontal-position variation than most other supplied points and should be checked in a repeat experiment.
 
