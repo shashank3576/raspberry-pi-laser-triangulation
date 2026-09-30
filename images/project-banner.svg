@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+<title id="title">Raspberry Pi Laser Triangulation</title><desc id="desc">Technical illustration of a camera observing a red laser spot on a target, representing non-contact height measurement.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07111f"/><stop offset=".55" stop-color="#101f35"/><stop offset="1" stop-color="#172b43"/></linearGradient>
+  <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3b50" stop-opacity=".12"/><stop offset=".7" stop-color="#ff3b50" stop-opacity=".85"/><stop offset="1" stop-color="#ff7b86"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#ff334f" stop-opacity=".9"/><stop offset="1" stop-color="#ff334f" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#8ba6c7" stroke-opacity=".1" stroke-width="1"/></pattern>
+  <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1200" height="360" rx="24" fill="url(#bg)"/><rect width="1200" height="360" rx="24" fill="url(#grid)"/>
+<circle cx="1010" cy="175" r="130" fill="#183b58" opacity=".38"/><circle cx="1010" cy="175" r="95" fill="none" stroke="#80a9d2" stroke-opacity=".23" stroke-dasharray="4 9"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <text x="64" y="74" fill="#ff6877" font-size="14" font-weight="700" letter-spacing="3">COMPUTER VISION  /  EXPERIMENTAL MEASUREMENT</text>
+  <text x="64" y="133" fill="#f4f8ff" font-size="39" font-weight="750">Raspberry Pi</text>
+  <text x="64" y="181" fill="#f4f8ff" font-size="39" font-weight="750">Laser Triangulation</text>
+  <text x="66" y="221" fill="#b8c8dc" font-size="17">Non-contact height estimation from laser-spot displacement</text>
+  <rect x="66" y="258" width="150" height="34" rx="17" fill="#203d59" stroke="#557997" stroke-opacity=".8"/>
+  <text x="141" y="280" text-anchor="middle" fill="#e4effc" font-size="13" font-weight="600">RASPBERRY PI 4</text>
+  <rect x="228" y="258" width="103" height="34" rx="17" fill="#203d59" stroke="#557997" stroke-opacity=".8"/>
+  <text x="279" y="280" text-anchor="middle" fill="#e4effc" font-size="13" font-weight="600">OPENCV</text>
+  <rect x="343" y="258" width="140" height="34" rx="17" fill="#203d59" stroke="#557997" stroke-opacity=".8"/>
+  <text x="413" y="280" text-anchor="middle" fill="#e4effc" font-size="13" font-weight="600">CALIBRATION</text>
+</g>
+<!-- camera body and lens -->
+<g transform="translate(690 91)">
+  <rect x="0" y="15" width="122" height="77" rx="12" fill="#20364b" stroke="#7895b1" stroke-width="2"/>
+  <rect x="17" y="0" width="31" height="18" rx="4" fill="#20364b" stroke="#7895b1" stroke-width="2"/>
+  <circle cx="72" cy="53" r="27" fill="#0b1727" stroke="#9ab3ca" stroke-width="3"/>
+  <circle cx="72" cy="53" r="17" fill="#244d70" stroke="#6e9ac0" stroke-width="2"/>
+  <circle cx="72" cy="53" r="7" fill="#a7d6f7"/>
+  <path d="M98 35L105 42M98 71L105 64" stroke="#ff6574" stroke-width="2" stroke-linecap="round"/>
+  <text x="61" y="116" fill="#b8c8dc" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">CAMERA</text>
+</g>
+<!-- laser emitter -->
+<g transform="translate(842 258) rotate(-18)">
+  <rect x="0" y="-12" width="70" height="24" rx="6" fill="#263d55" stroke="#8da8c3" stroke-width="2"/>
+  <rect x="57" y="-7" width="17" height="14" rx="3" fill="#f04458"/>
+  <circle cx="76" cy="0" r="20" fill="url(#glow)" filter="url(#soft)"/>
+</g>
+<!-- beam and target -->
+<path d="M917 256L1040 183" stroke="url(#beam)" stroke-width="5" stroke-linecap="round"/>
+<path d="M917 256L1040 183" stroke="#ff5c6c" stroke-opacity=".22" stroke-width="22" stroke-linecap="round"/>
+<g transform="translate(1030 70)">
+  <path d="M0 0L73 17V236L0 219Z" fill="#d5e3f1" fill-opacity=".13" stroke="#9db5ce" stroke-width="2"/>
+  <path d="M15 20L58 30V209L15 199Z" fill="#edf5ff" fill-opacity=".07" stroke="#9db5ce" stroke-opacity=".35"/>
+  <ellipse cx="27" cy="114" rx="22" ry="25" fill="url(#glow)"/>
+  <circle cx="27" cy="114" r="6" fill="#ff455b"/><circle cx="27" cy="114" r="12" fill="none" stroke="#ff6574" stroke-width="1.5"/>
+  <path d="M27 91V78M27 137V150M4 114H-9M50 114H63" stroke="#ff8792" stroke-width="1.5"/>
+  <text x="37" y="258" fill="#b8c8dc" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">TARGET</text>
+</g>
+<path d="M777 144L1057 184" stroke="#7ca5ce" stroke-opacity=".42" stroke-dasharray="5 6" stroke-width="1.5"/>
+<path d="M790 168L1057 184" stroke="#7ca5ce" stroke-opacity=".22" stroke-dasharray="5 6" stroke-width="1.5"/>
+<text x="887" y="129" fill="#d7e6f5" font-family="Arial,sans-serif" font-size="12">image-space shift</text>
+<path d="M1005 140L1024 153" stroke="#d7e6f5" stroke-opacity=".65" stroke-width="1.2"/>
+<text x="1091" y="329" fill="#6f8eac" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" letter-spacing="2">MEASURE  /  CALIBRATE  /  ESTIMATE</text>
+</svg>
