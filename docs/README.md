@@ -10,6 +10,10 @@ See the project report in [report/](report/). It describes the measurement setup
 
 See the project presentation in [presentation/](presentation/) for a concise overview of the system and its results.
 
+## Technical overview
+
+See [TECHNICAL_OVERVIEW.md](TECHNICAL_OVERVIEW.md) for the image-processing stages, calibration-model form, uncertainty calculation, data flow, and reproducibility checklist.
+
 ## Repository guide
 
 - Start with the [main README](../README.md) for the project overview, setup instructions, run commands, calibration results, and embedded visual guide.
