@@ -1,57 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
-<title id="title">Laser triangulation measurement pipeline</title>
-<desc id="desc">A clean six-stage block diagram: camera capture, red spot detection, centroid estimation, reference displacement, calibration model, and height output.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc">
+<title id="title">Laser triangulation measurement chain</title>
+<desc id="desc">Six connected stages for a Raspberry Pi laser triangulation instrument: image acquisition, laser spot localisation, centroid estimation, reference displacement, calibration mapping, and height output.</desc>
 <defs>
-  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#0b1525"/>
-    <stop offset="1" stop-color="#14263b"/>
-  </linearGradient>
-  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#ff596d"/>
-    <stop offset="1" stop-color="#ff8a6b"/>
-  </linearGradient>
-  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-    <path d="M0,0 L6,3 L0,6 Z" fill="#91a9c4"/>
-  </marker>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101c2d"/><stop offset="1" stop-color="#1c3045"/></linearGradient>
+  <linearGradient id="coral" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff6474"/><stop offset="1" stop-color="#ff9b72"/></linearGradient>
+  <linearGradient id="mint" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#50c8b1"/><stop offset="1" stop-color="#91e2c9"/></linearGradient>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#91a8c0"/></marker>
 </defs>
-<rect width="1200" height="340" rx="20" fill="url(#background)"/>
+<rect width="1200" height="390" rx="22" fill="url(#bg)"/>
 <g font-family="Inter,Segoe UI,Arial,sans-serif">
-  <text x="48" y="48" fill="#f4f7fb" font-size="22" font-weight="700">Measurement pipeline</text>
-  <text x="48" y="73" fill="#a8bad0" font-size="13">From camera image to calibrated height estimate</text>
-  <rect x="48" y="95" width="1104" height="1" fill="#6d86a2" opacity=".35"/>
+  <text x="44" y="43" fill="#f4f7fb" font-size="22" font-weight="750">LASER TRIANGULATION</text>
+  <text x="44" y="67" fill="#a9bdd1" font-size="13">From optical observation to calibrated, non-contact height measurement</text>
+  <rect x="1000" y="28" width="156" height="30" rx="15" fill="#253b4f" stroke="#47647c"/>
+  <circle cx="1018" cy="43" r="4" fill="#72d9c0"/>
+  <text x="1030" y="47" fill="#dce9f4" font-size="11" font-weight="700" letter-spacing=".6">MEASUREMENT CHAIN</text>
+  <path d="M44 86 H1156" stroke="#6c8299" stroke-opacity=".45"/>
   <g>
-    <rect x="48" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
-    <rect x="236" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
-    <rect x="424" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
-    <rect x="612" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
-    <rect x="800" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
-    <rect x="988" y="125" width="164" height="112" rx="12" fill="#203d4b" stroke="#4c9b91" stroke-width="1.5"/>
+    <rect x="44" y="108" width="166" height="142" rx="13" fill="#1b3045" stroke="#49657e"/>
+    <rect x="232" y="108" width="166" height="142" rx="13" fill="#1b3045" stroke="#49657e"/>
+    <rect x="420" y="108" width="166" height="142" rx="13" fill="#1b3045" stroke="#49657e"/>
+    <rect x="608" y="108" width="166" height="142" rx="13" fill="#1b3045" stroke="#49657e"/>
+    <rect x="796" y="108" width="166" height="142" rx="13" fill="#1b3045" stroke="#49657e"/>
+    <rect x="984" y="108" width="172" height="142" rx="13" fill="#183d43" stroke="#4fae9d" stroke-width="1.4"/>
   </g>
-  <g fill="url(#accent)">
-    <rect x="48" y="125" width="164" height="4" rx="2"/>
-    <rect x="236" y="125" width="164" height="4" rx="2"/>
-    <rect x="424" y="125" width="164" height="4" rx="2"/>
-    <rect x="612" y="125" width="164" height="4" rx="2"/>
-    <rect x="800" y="125" width="164" height="4" rx="2"/>
+  <g fill="url(#coral)">
+    <rect x="44" y="108" width="166" height="4" rx="2"/><rect x="232" y="108" width="166" height="4" rx="2"/><rect x="420" y="108" width="166" height="4" rx="2"/><rect x="608" y="108" width="166" height="4" rx="2"/><rect x="796" y="108" width="166" height="4" rx="2"/>
   </g>
-  <rect x="988" y="125" width="164" height="4" rx="2" fill="#55c6ad"/>
-  <g fill="#ff9a9f" font-size="11" font-weight="700" letter-spacing="1.2">
-    <text x="64" y="153">01 / INPUT</text><text x="252" y="153">02 / DETECT</text><text x="440" y="153">03 / LOCALISE</text><text x="628" y="153">04 / REFERENCE</text><text x="816" y="153">05 / CALIBRATE</text>
+  <rect x="984" y="108" width="172" height="4" rx="2" fill="url(#mint)"/>
+  <g fill="#ff9a9f" font-size="10" font-weight="750" letter-spacing="1">
+    <text x="58" y="134">01 · ACQUIRE</text><text x="246" y="134">02 · LOCALISE</text><text x="434" y="134">03 · ESTIMATE</text><text x="622" y="134">04 · COMPARE</text><text x="810" y="134">05 · CALIBRATE</text>
   </g>
-  <text x="1004" y="153" fill="#82e0c9" font-size="11" font-weight="700" letter-spacing="1.2">06 / OUTPUT</text>
-  <g fill="#f4f7fb" font-size="15" font-weight="650">
-    <text x="64" y="184">Camera frame</text>
-    <text x="252" y="184">Red spot</text><text x="252" y="204">detection</text>
-    <text x="440" y="184">Centroid</text><text x="440" y="204">estimation</text>
-    <text x="628" y="184">Pixel shift</text><text x="628" y="204">Δx = x − x₀</text>
-    <text x="816" y="184">Rational model</text><text x="816" y="204">h = f(Δx)</text>
-    <text x="1004" y="184">Height estimate</text><text x="1004" y="204">in millimetres</text>
+  <text x="998" y="134" fill="#8ce1ce" font-size="10" font-weight="750" letter-spacing="1">06 · MEASURE</text>
+  <!-- camera icon -->
+  <g transform="translate(60 148)" stroke="#f4f7fb" stroke-width="2" fill="none" stroke-linejoin="round">
+    <path d="M0 8 H12 L17 2 H35 L40 8 H48 V34 H0 Z"/><circle cx="24" cy="21" r="9"/><circle cx="24" cy="21" r="3" fill="#ff7d7d" stroke="none"/>
   </g>
-  <g stroke="#91a9c4" stroke-width="2" marker-end="url(#arrow)" fill="none">
-    <path d="M214 181 H230"/><path d="M402 181 H418"/><path d="M590 181 H606"/><path d="M778 181 H794"/><path d="M966 181 H982"/>
+  <!-- laser spot icon -->
+  <g transform="translate(248 148)" fill="none" stroke-linecap="round">
+    <rect x="0" y="2" width="48" height="34" rx="4" stroke="#8ea7c0" stroke-width="1.5"/>
+    <path d="M5 29 L17 18 L25 25 L34 12 L43 29" stroke="#8ea7c0" stroke-width="1.5"/>
+    <circle cx="30" cy="17" r="5" fill="#ff6877" stroke="#ff9a9f" stroke-width="1.5"/><circle cx="30" cy="17" r="9" stroke="#ff6877" stroke-opacity=".45"/>
   </g>
-  <text x="48" y="278" fill="#b6c6d9" font-size="13">Reference subtraction reduces sensitivity to common image-position shifts.</text>
-  <text x="1152" y="278" fill="#83d9c3" font-size="13" text-anchor="end">Python · OpenCV · Raspberry Pi</text>
-  <text x="48" y="310" fill="#7189a4" font-size="11">Illustrative software workflow; not a mechanical or optical drawing.</text>
+  <!-- centroid icon -->
+  <g transform="translate(436 148)" stroke="#8ea7c0" stroke-width="1.5" fill="none">
+    <rect x="0" y="1" width="48" height="36" rx="4"/>
+    <path d="M24 5 V33 M4 19 H44" stroke-dasharray="3 3"/>
+    <circle cx="29" cy="15" r="6" fill="#ff7d7d" stroke="#ff9a9f"/><path d="M29 5 V25 M19 15 H39" stroke="#ffe6e7" stroke-width="1.5"/>
+  </g>
+  <!-- displacement icon -->
+  <g transform="translate(624 148)" fill="none" stroke-linecap="round">
+    <path d="M2 30 H46" stroke="#8ea7c0" stroke-width="1.5"/><path d="M7 25 V34 M41 25 V34" stroke="#8ea7c0" stroke-width="1.5"/>
+    <circle cx="12" cy="18" r="4" fill="#ff7180" stroke="#ff9a9f"/><circle cx="37" cy="18" r="4" fill="#ff7180" stroke="#ff9a9f"/>
+    <path d="M17 8 H32 M27 4 L32 8 L27 12" stroke="#f4f7fb" stroke-width="1.8"/>
+  </g>
+  <!-- calibration curve icon -->
+  <g transform="translate(812 148)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 2 V36 H49" stroke="#8ea7c0" stroke-width="1.5"/>
+    <path d="M7 31 C13 28 15 25 21 21 S31 12 43 5" stroke="#ff8b7b" stroke-width="2.5"/>
+    <circle cx="13" cy="27" r="2.5" fill="#ff8b7b"/><circle cx="24" cy="19" r="2.5" fill="#ff8b7b"/><circle cx="36" cy="10" r="2.5" fill="#ff8b7b"/>
+  </g>
+  <!-- height output icon -->
+  <g transform="translate(1002 147)" fill="none" stroke="#8ce1ce" stroke-width="1.8" stroke-linecap="round">
+    <path d="M1 35 H48 M7 35 V12 H42 V35"/><path d="M15 26 H34 M15 26 L20 21 M15 26 L20 31 M34 26 L29 21 M34 26 L29 31"/>
+    <path d="M25 8 V1 M21 5 L25 1 L29 5"/>
+  </g>
+  <g fill="#f4f7fb" font-size="14" font-weight="700">
+    <text x="60" y="207">Camera frame</text>
+    <text x="248" y="207">Laser spot</text>
+    <text x="436" y="207">Centroid</text>
+    <text x="624" y="207">Pixel shift</text>
+    <text x="812" y="207">Rational model</text>
+    <text x="1000" y="207">Height estimate</text>
+  </g>
+  <g fill="#b4c5d6" font-size="11.5">
+    <text x="60" y="229">Image acquisition</text>
+    <text x="248" y="229">ROI and intensity</text>
+    <text x="436" y="229">Sub-pixel position</text>
+    <text x="624" y="229">Δx = x − x₀</text>
+    <text x="812" y="229">h = f(Δx)</text>
+    <text x="1000" y="229">Output in mm</text>
+  </g>
+  <g stroke="#91a8c0" stroke-width="1.8" fill="none" marker-end="url(#arrow)"><path d="M213 178 H227"/><path d="M401 178 H415"/><path d="M589 178 H603"/><path d="M777 178 H791"/><path d="M965 178 H979"/></g>
+  <rect x="44" y="273" width="1112" height="72" rx="12" fill="#14273a" stroke="#344d64"/>
+  <text x="62" y="297" fill="#8ce1ce" font-size="10" font-weight="750" letter-spacing="1.2">MEASUREMENT BASIS</text>
+  <text x="62" y="322" fill="#f4f7fb" font-size="15" font-weight="650">Height is inferred from spot displacement using an experimentally fitted calibration.</text>
+  <path d="M810 288 V330" stroke="#49657e"/>
+  <text x="832" y="300" fill="#a9bdd1" font-size="11">INSTRUMENTATION STACK</text>
+  <text x="832" y="322" fill="#f4f7fb" font-size="13" font-weight="650">Optics · Embedded acquisition · Calibration</text>
+  <text x="44" y="369" fill="#8299af" font-size="10.5">Conceptual software chain — not to scale and not a mechanical drawing.</text>
 </g>
 </svg>
