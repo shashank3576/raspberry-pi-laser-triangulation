@@ -2,6 +2,10 @@
 
 **Non-contact height estimation using laser-spot displacement, computer vision, and experimental calibration.**
 
+<p align="center">
+  <img src="images/measurement-pipeline.svg" alt="Six-stage measurement pipeline from camera capture to calibrated height estimate" width="100%">
+</p>
+
 <p align="left">
   <img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%204-C51A4A?logo=raspberrypi&logoColor=white" alt="Platform: Raspberry Pi 4">
   <img src="https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white" alt="Language: Python">
@@ -36,12 +40,7 @@ This project estimates an object's height from the horizontal displacement of a 
 
 ## Method
 
-1. **Capture** — acquire an image from the camera.
-2. **Detect** — locate a red-dominant laser region inside the configured region of interest.
-3. **Localise** — estimate the spot centre using a local, background-subtracted intensity window.
-4. **Reference** — calculate horizontal displacement from the current 0 mm reference.
-5. **Estimate** — evaluate the saved calibration model to estimate height.
-6. **Record** — save measurements and supporting statistics to CSV.
+The diagram above summarises the software pipeline. In practice, the program captures an image, detects the red-dominant laser region inside the configured region of interest, estimates the spot centroid, calculates horizontal displacement from the current 0 mm reference, evaluates the saved calibration model, and records measurements to CSV.
 
 The system is sensitive to changes in mounting, focus, illumination, and camera settings. Recalibrate after significant changes to the physical setup.
 
