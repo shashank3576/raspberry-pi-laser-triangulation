@@ -1,0 +1,6 @@
+# Python packages used by the analysis and measurement scripts.
+# On Raspberry Pi OS, prefer OS packages for OpenCV and Picamera2 where appropriate.
+numpy
+scipy
+matplotlib
+opencv-python
