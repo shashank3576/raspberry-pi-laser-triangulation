@@ -3,8 +3,9 @@
 **A Raspberry Pi–based optical instrument for non-contact height measurement using laser triangulation and experimental calibration.**
 
 <p align="center">
-  <img src="images/measurement-pipeline.svg" alt="Six-stage measurement pipeline from camera capture to calibrated height estimate" width="100%">
+  <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical Raspberry Pi laser triangulation experimental setup" width="820">
 </p>
+<p align="center"><sub>Experimental prototype for non-contact height measurement</sub></p>
 
 <p align="left">
   <img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%204-C51A4A?logo=raspberrypi&logoColor=white" alt="Platform: Raspberry Pi 4">
