@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/Calibration-0%E2%80%9350%20mm-2E8B57" alt="Calibration range: 0 to 50 mm">
 </p>
 
-[Overview](#overview) · [Method](#method) · [Results](#calibration-results) · [Setup](#run-the-project) · [Documentation](#documentation)
+[System](#system-overview) · [Measurement principle](#measurement-principle) · [Calibration results](#calibration-results) · [Run](#run-the-project) · [Documentation](#documentation)
 
 ---
 
@@ -40,7 +40,23 @@ This system estimates object height by measuring the movement of a projected las
 
 ## Measurement principle
 
-The diagram above summarises the software pipeline. In practice, the program captures an image, detects the red-dominant laser region inside the configured region of interest, estimates the spot centroid, calculates horizontal displacement from the current 0 mm reference, evaluates the saved calibration model, and records measurements to CSV.
+The system estimates height through laser triangulation: target-height changes shift the projected laser spot in the camera image. The camera observes the spot at an angle relative to the laser projection direction, creating a measurable image-position change.
+
+![Triangulation geometry used by the project](images/laser_spot/Triangulation%20geometry.png)
+
+The software measures the horizontal spot coordinate relative to a freshly acquired 0 mm reference:
+
+`Δx = x_object − x_reference`
+
+The saved calibration model maps this displacement to an estimated physical height. This mapping depends on the optical and mechanical arrangement, so changes to camera position, laser angle, focus, or camera settings can require recalibration.
+
+## Processing and measurement chain
+
+<p align="center">
+  <img src="images/measurement-pipeline.svg" alt="Block diagram of the measurement chain from camera capture to height estimate" width="100%">
+</p>
+
+The processing chain is image acquisition, laser-spot detection, centroid estimation, reference subtraction, calibration mapping, and recording of the measurement in CSV output.
 
 The system is sensitive to changes in mounting, focus, illumination, and camera settings. Recalibrate after significant changes to the physical setup.
 
