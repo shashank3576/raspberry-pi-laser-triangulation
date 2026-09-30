@@ -13,10 +13,41 @@
 
 This project estimates an object's height from the horizontal displacement of a red laser spot in images captured by a Raspberry Pi camera. It includes the calibration data, fitted model, analysis outputs, and project report/presentation.
 
+<p align="center">
+  <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical Raspberry Pi laser triangulation setup" width="82%">
+</p>
+<p align="center"><em>Experimental setup used for camera-based laser triangulation.</em></p>
+
+## Visual overview
+
+The images below document the physical arrangement, the triangulation principle, and the laser spot used by the image-processing pipeline.
+
+<table>
+  <tr>
+    <td align="center" width="50%"><strong>Triangulation geometry</strong><br><img src="images/laser_spot/Triangulation%20geometry.png" alt="Laser triangulation geometry diagram" width="100%"></td>
+    <td align="center" width="50%"><strong>3D design</strong><br><img src="images/laser_spot/3D%20design.png" alt="Three-dimensional design of the measurement setup" width="100%"></td>
+  </tr>
+</table>
+
+### Laser spot examples
+
+These reference images show the laser spot as captured by the camera. The detector identifies the red-dominant region and estimates its centroid before converting the horizontal pixel shift into a height estimate.
+
+<p align="center">
+  <img src="images/laser_spot/Laser%20dot.jpg" alt="Laser dot captured by the camera" width="48%">
+  <img src="images/laser_spot/laser_spot_reference_01.jpg" alt="Laser spot reference image 1" width="48%">
+</p>
+<p align="center">
+  <img src="images/laser_spot/laser_spot_reference_02.jpg" alt="Laser spot reference image 2" width="48%">
+</p>
+
+---
+
 ![Calibration fit comparison](results/figures/calibration/calibration_fit_comparison.jpg)
 
 ## Contents
 
+- [Visual overview](#visual-overview)
 - [Overview](#overview)
 - [How it works](#how-it-works)
 - [Calibration snapshot](#calibration-snapshot)
