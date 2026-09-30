@@ -22,11 +22,6 @@
 
 This system estimates object height by measuring the movement of a projected laser spot in a camera image. A Raspberry Pi captures the image, software locates the spot, and a calibration model converts measured pixel displacement into physical height.
 
-<p align="center">
-  <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical Raspberry Pi laser triangulation setup" width="760">
-</p>
-<p align="center"><sub>Physical measurement setup. Consistent camera, laser, target geometry, and camera settings are important for repeatable calibration.</sub></p>
-
 ### At a glance
 
 | | |
