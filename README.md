@@ -1,6 +1,6 @@
 # Raspberry Pi Laser Triangulation
 
-**A non-contact height measurement system based on laser triangulation, camera geometry, and experimental calibration.**
+**A Raspberry Pi–based optical instrument for non-contact height measurement using laser triangulation and experimental calibration.**
 
 <p align="center">
   <img src="images/measurement-pipeline.svg" alt="Six-stage measurement pipeline from camera capture to calibrated height estimate" width="100%">
@@ -40,7 +40,7 @@ This system estimates object height by measuring the movement of a projected las
 
 ## Measurement principle
 
-The system estimates height through laser triangulation: target-height changes shift the projected laser spot in the camera image. The camera observes the spot at an angle relative to the laser projection direction, creating a measurable image-position change.
+The measurement principle is optical triangulation: target-height changes shift the projected laser spot in the camera image because the camera views the spot at an angle relative to the laser projection direction.
 
 ![Triangulation geometry used by the project](images/laser_spot/Triangulation%20geometry.png)
 
@@ -56,7 +56,7 @@ The saved calibration model maps this displacement to an estimated physical heig
   <img src="images/measurement-pipeline.svg" alt="Block diagram of the measurement chain from camera capture to height estimate" width="100%">
 </p>
 
-The processing chain is image acquisition, laser-spot detection, centroid estimation, reference subtraction, calibration mapping, and recording of the measurement in CSV output.
+The processing chain is image acquisition, laser-spot localisation, centroid estimation, reference subtraction, calibration mapping, and recording of the measurement in CSV output. Image processing supports the measurement; the central engineering task is converting optical displacement into a calibrated height estimate.
 
 The system is sensitive to changes in mounting, focus, illumination, and camera settings. Recalibrate after significant changes to the physical setup.
 
