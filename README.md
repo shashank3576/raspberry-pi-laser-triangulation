@@ -1,178 +1,106 @@
 # Raspberry Pi Laser Triangulation
 
 <p align="center">
-  <strong>Camera-based object-height measurement using a red laser and pixel-displacement calibration</strong>
+  <img src="images/project-banner.svg" alt="Raspberry Pi laser triangulation — camera-based non-contact height measurement" width="100%">
+</p>
+
+<p align="center">
+  <strong>A camera-based, non-contact height-estimation system using red-laser displacement and a calibrated vision pipeline.</strong>
 </p>
 
 <p align="center">
   <img alt="Platform" src="https://img.shields.io/badge/platform-Raspberry%20Pi%204-C51A4A?logo=raspberrypi&logoColor=white">
   <img alt="Language" src="https://img.shields.io/badge/language-Python-3776AB?logo=python&logoColor=white">
-  <img alt="Vision" src="https://img.shields.io/badge/vision-OpenCV-5C3EE8?logo=opencv&logoColor=white">
+  <img alt="Computer vision" src="https://img.shields.io/badge/vision-OpenCV-5C3EE8?logo=opencv&logoColor=white">
   <img alt="Calibration range" src="https://img.shields.io/badge/calibration%20range-0%E2%80%9350%20mm-2E8B57">
+  <img alt="Model" src="https://img.shields.io/badge/model-rational%20calibration-4263EB">
 </p>
 
-This project estimates an object's height from the horizontal displacement of a red laser spot in images captured by a Raspberry Pi camera. It includes the calibration data, fitted model, analysis outputs, and project report/presentation.
-
 <p align="center">
-  <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical Raspberry Pi laser triangulation setup" width="82%">
-</p>
-<p align="center"><em>Experimental setup used for camera-based laser triangulation.</em></p>
-
-## Visual overview
-
-The images below document the physical arrangement, the triangulation principle, and the laser spot used by the image-processing pipeline.
-
-<table>
-  <tr>
-    <td align="center" width="50%"><strong>Triangulation geometry</strong><br><img src="images/laser_spot/Triangulation%20geometry.png" alt="Laser triangulation geometry diagram" width="100%"></td>
-    <td align="center" width="50%"><strong>3D design</strong><br><img src="images/laser_spot/3D%20design.png" alt="Three-dimensional design of the measurement setup" width="100%"></td>
-  </tr>
-</table>
-
-### Laser spot examples
-
-These reference images show the laser spot as captured by the camera. The detector identifies the red-dominant region and estimates its centroid before converting the horizontal pixel shift into a height estimate.
-
-<p align="center">
-  <img src="images/laser_spot/Laser%20dot.jpg" alt="Laser dot captured by the camera" width="48%">
-  <img src="images/laser_spot/laser_spot_reference_01.jpg" alt="Laser spot reference image 1" width="48%">
-</p>
-<p align="center">
-  <img src="images/laser_spot/laser_spot_reference_02.jpg" alt="Laser spot reference image 2" width="48%">
+  <a href="#system-at-a-glance">System overview</a> ·
+  <a href="#results-at-a-glance">Results</a> ·
+  <a href="#run-the-project">Run it</a> ·
+  <a href="#project-documentation">Documentation</a>
 </p>
 
 ---
 
-![Calibration fit comparison](results/figures/calibration/calibration_fit_comparison.jpg)
+## Project overview
 
-## Contents
+This project estimates an object's height from the horizontal displacement of a red laser spot in images captured by a Raspberry Pi camera. The software detects the red-dominant spot, estimates its centroid, measures displacement relative to a 0 mm reference, and converts that displacement to height using a calibration model.
 
-- [Visual overview](#visual-overview)
-- [Overview](#overview)
-- [How it works](#how-it-works)
-- [Calibration snapshot](#calibration-snapshot)
-- [Repository map](#repository-map)
-- [Hardware and setup](#hardware-and-setup)
-- [Run the project](#run-the-project)
-- [Data and results](#data-and-results)
-- [Limitations](#limitations)
-- [Project documents](#project-documents)
+The repository includes the measurement and calibration scripts, calibration data and saved model, analysis tables and plots, setup photographs, design references, and project documents.
 
-## Overview
+<p align="center">
+  <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical experimental setup for Raspberry Pi laser triangulation" width="82%">
+</p>
+<p align="center"><em>Experimental setup: keep the camera, laser, target geometry, and relevant camera settings consistent between calibration and measurement.</em></p>
 
-| Component | Details |
+## System at a glance
+
+| Component | Implementation |
 |---|---|
 | Computing platform | Raspberry Pi 4 Model B |
 | Camera | Raspberry Pi Camera Module Rev 1.3 (OV5647) |
 | Image resolution | 2592 × 1944 pixels |
+| Spot detection | Red-dominant region detection followed by local, background-subtracted centroid estimation |
 | Measurement signal | Horizontal laser-spot displacement relative to a 0 mm reference |
-| Spot detection | Red-dominant region detection and local, background-subtracted centroid |
-| Model saved with the project | Rational calibration model |
-| Supplied calibration range | 0–50 mm |
+| Calibration model | Rational model saved in JSON |
+| Supplied calibration interval | 0–50 mm |
+| Main tools | Python, OpenCV, NumPy, SciPy, Matplotlib, Picamera2 |
 
-## How it works
+## How the pipeline works
 
-```mermaid
-flowchart LR
-    A[Laser illuminates target] --> B[Raspberry Pi camera captures image]
-    B --> C[Detect red laser spot]
-    C --> D[Estimate spot centroid]
-    D --> E[Calculate horizontal pixel shift]
-    E --> F[Apply calibration model]
-    F --> G[Estimated object height]
-```
+<p align="center">
+  <img src="images/processing-workflow.svg" alt="Processing pipeline from camera image capture to calibrated height estimate" width="100%">
+</p>
 
-The camera, laser, and target geometry must remain fixed between calibration and measurement. The measurement script uses the current 0 mm reference to compensate for a common shift in the setup.
+1. **Capture:** acquire an image from the Raspberry Pi camera.
+2. **Detect:** identify a red-dominant laser region within the configured region of interest.
+3. **Localise:** estimate the laser spot's centre using a local, background-subtracted intensity window.
+4. **Reference:** measure the current 0 mm reference and calculate the horizontal pixel shift.
+5. **Estimate:** evaluate the saved calibration model to obtain a height estimate.
+6. **Record:** save object measurements and supporting statistics to CSV.
 
-## Calibration snapshot
+The physical arrangement matters: changing the camera, laser, target geometry, focus, illumination, or camera settings can change the calibration relationship. Recalibrate after significant changes.
 
-The supplied model uses reference heights of 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 34, 40, 46, and 50 mm.
+## Optical setup and image references
 
-| Metric | Value in supplied model |
+<table>
+  <tr>
+    <td align="center" width="50%"><strong>Triangulation geometry</strong><br><img src="images/laser_spot/Triangulation%20geometry.png" alt="Diagram of laser triangulation geometry" width="100%"></td>
+    <td align="center" width="50%"><strong>3D design</strong><br><img src="images/laser_spot/3D%20design.png" alt="Three-dimensional design reference for the setup" width="100%"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="images/laser_spot/Laser%20dot.jpg" alt="Laser dot captured by the camera" width="48%">
+  <img src="images/laser_spot/laser_spot_reference_01.jpg" alt="Laser spot reference image" width="48%">
+</p>
+<p align="center"><em>Laser-spot examples used to illustrate the image-processing target.</em></p>
+
+## Results at a glance
+
+The supplied calibration model contains reference heights from 0 mm through 50 mm, using the following points: 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 34, 40, 46, and 50 mm.
+
+| Metric | Value in the supplied model |
 |---|---:|
-| Selected model | Rational |
+| Selected calibration model | Rational |
 | Leave-one-out cross-validation RMSE | 0.245 mm |
 | Maximum absolute leave-one-out error | 0.510 mm |
 | Calibration interval | 0–50 mm |
 
-> **Important:** these are cross-validation results from the calibration dataset, not a guarantee of accuracy on new objects or under changed lighting, focus, geometry, or camera settings. The 40 mm calibration point has notably higher horizontal-position variation than most other points and should be checked in a repeat experiment.
+> **Interpret these numbers carefully.** The errors above are calculated by leave-one-out cross-validation on the calibration dataset. They are not a guarantee of accuracy on new objects or under changed conditions. Independent measurements at known heights are needed for a stronger assessment of real-world performance.
 
-## Repository map
-
-```text
-raspberry-pi-laser-triangulation/
-├── README.md                  # Project overview and quick start
-├── .gitignore
-├── requirements.txt
-├── src/
-│   ├── calibration.py         # Collect calibration data and fit models
-│   └── height_calculation.py  # Estimate object heights using saved model
-├── data/
-│   ├── raw/
-│   │   └── all_measurements.csv
-│   └── calibration/
-│       ├── calibration_model.json
-│       └── combined_calibration_data.csv
-├── results/
-│   ├── figures/calibration/   # Calibration plots
-│   ├── measurements/          # Height-measurement output
-│   └── tables/                 # Calibration analysis tables
-├── images/
-│   └── laser_spot/            # Setup photo, laser spot references, geometry, and 3D design
-└── docs/
-    ├── report/                # Project report
-    └── presentation/          # Project presentation
-```
-
-## Hardware and setup
-
-The scripts use `Picamera2` to capture images. On Raspberry Pi OS, install the camera and image-processing packages through the OS package manager. A typical starting point is:
-
-```bash
-sudo apt update
-sudo apt install python3-picamera2 python3-opencv python3-numpy python3-scipy python3-matplotlib
-```
-
-Package names can vary by Raspberry Pi OS release. `Picamera2` is normally installed using Raspberry Pi OS packages rather than as an ordinary cross-platform pip dependency.
-
-## Run the project
-
-Run commands from the repository root.
-
-### 1. Re-run calibration
-
-```bash
-python3 src/calibration.py
-```
-
-Follow the prompts to place the known-height calibration targets. This regenerates calibration data and analysis outputs and may overwrite supplied results. Back up any files you need to preserve before running it.
-
-### 2. Measure object heights
-
-```bash
-python3 src/height_calculation.py
-```
-
-The script loads `data/calibration/calibration_model.json` and writes measurements to `results/measurements/height_measurement_results.csv`.
-
-Both scripts require compatible Raspberry Pi OS camera support and connected/configured hardware; they are not expected to run as-is on a typical desktop computer.
-
-## Data and results
-
-| Path | Purpose |
-|---|---|
-| `data/raw/all_measurements.csv` | Individual spot observations collected during calibration |
-| `data/calibration/combined_calibration_data.csv` | Aggregated calibration measurements |
-| `data/calibration/calibration_model.json` | Camera/detector settings, calibration points, model parameters, and error summary |
-| `results/tables/calibration_analysis.csv` | Per-height analysis and candidate-model errors |
-| `results/tables/calibration_coefficients.csv` | Candidate-model summaries and fitted parameters |
-| `results/measurements/height_measurement_results.csv` | Supplied object-height measurement output |
-
-### Calibration figures
+### Calibration analysis
 
 **Height versus horizontal pixel position**
 
-![Height versus pixel position](results/figures/calibration/height_vs_pixel_position.jpg)
+![Height versus horizontal pixel position](results/figures/calibration/height_vs_pixel_position.jpg)
+
+**Calibration fit comparison**
+
+![Calibration fit comparison](results/figures/calibration/calibration_fit_comparison.jpg)
 
 **Leave-one-out error comparison**
 
@@ -182,16 +110,105 @@ Both scripts require compatible Raspberry Pi OS camera support and connected/con
 
 ![Pixel-position standard deviation](results/figures/calibration/pixel_position_standard_deviation.jpg)
 
-## Limitations
+The 40 mm calibration point has notably higher horizontal-position variation than most other points in the supplied model and is worth rechecking in a repeat experiment.
 
-- The calibration applies to the represented physical arrangement and camera settings. Recalibrate after optical, mechanical, or camera-setting changes.
-- The reported cross-validation error is calculated from the calibration dataset; independent measurements at known heights are needed to assess performance on new samples.
-- Measurements outside the calibrated pixel range may require extrapolation and should be treated cautiously.
-- The report and presentation in `docs/` provide additional project context.
+## Run the project
 
-## Project documents
+### 1. Clone the repository
 
-- **Report:** `docs/report/`
-- **Presentation:** `docs/presentation/`
+```bash
+git clone https://github.com/shashank3576/raspberry-pi-laser-triangulation.git
+cd raspberry-pi-laser-triangulation
+```
 
-See [docs/README.md](docs/README.md) for the documentation index.
+### 2. Install dependencies on Raspberry Pi OS
+
+The scripts use Picamera2 and the Raspberry Pi camera stack. On a compatible Raspberry Pi OS installation, a typical starting point is:
+
+```bash
+sudo apt update
+sudo apt install python3-picamera2 python3-opencv python3-numpy python3-scipy python3-matplotlib
+```
+
+Package names can vary by OS release. Prefer the OS packages for Picamera2 and, where appropriate, OpenCV rather than assuming these camera-specific dependencies will install on any desktop system.
+
+### 3. Run calibration
+
+```bash
+python3 src/calibration.py
+```
+
+Follow the prompts to place known-height calibration targets. Calibration regenerates model/data/analysis outputs and may overwrite supplied results; back up any results you want to preserve before running it.
+
+### 4. Measure object heights
+
+```bash
+python3 src/height_calculation.py
+```
+
+The measurement script loads `data/calibration/calibration_model.json`, prompts for a current 0 mm reference and the objects to measure, then writes results to `results/measurements/height_measurement_results.csv`.
+
+**Hardware note:** the scripts expect compatible Raspberry Pi OS camera support and connected/configured hardware. They are not intended to run on a typical desktop without adapting the camera interface.
+
+## Repository structure
+
+```text
+raspberry-pi-laser-triangulation/
+├── src/
+│   ├── calibration.py          # Collect calibration observations and fit models
+│   └── height_calculation.py   # Estimate heights using the saved model
+├── data/
+│   ├── raw/                    # Individual observations
+│   └── calibration/            # Aggregated data and saved calibration model
+├── results/
+│   ├── figures/calibration/    # Calibration plots
+│   ├── measurements/           # Object-height measurement output
+│   └── tables/                 # Analysis tables and model summaries
+├── images/
+│   ├── laser_spot/             # Setup, geometry, design, and spot references
+│   ├── project-banner.svg      # Repository header artwork
+│   └── processing-workflow.svg # Pipeline diagram
+├── docs/
+│   ├── report/                 # Project report
+│   ├── presentation/           # Project presentation
+│   └── README.md               # Documentation index
+├── requirements.txt
+└── README.md
+```
+
+## Data and output files
+
+| File | Purpose |
+|---|---|
+| `data/raw/all_measurements.csv` | Individual laser-spot observations collected during calibration |
+| `data/calibration/combined_calibration_data.csv` | Aggregated calibration measurements |
+| `data/calibration/calibration_model.json` | Detector and camera settings, calibration points, selected model, and error summary |
+| `results/tables/calibration_analysis.csv` | Per-height analysis and candidate-model errors |
+| `results/tables/calibration_coefficients.csv` | Candidate-model summaries and fitted parameters |
+| `results/measurements/height_measurement_results.csv` | Saved object-height measurements |
+
+## Engineering considerations and limitations
+
+- **Calibration is setup-specific.** Recalibrate after meaningful changes to optics, mounting, focus, illumination, or camera controls.
+- **Cross-validation is not independent validation.** Test with known-height objects not used to fit the model before making accuracy claims.
+- **The 40 mm point deserves a repeat check.** Its reported horizontal-position standard deviation is higher than that of most supplied calibration points.
+- **Extrapolation needs caution.** Measurements outside the calibrated pixel range are estimated by edge-slope linear extrapolation in the measurement model; they should not be treated as validated measurements.
+- **Measurement uncertainty is an estimate.** Interpret the script's reported uncertainty in the context of the model's cross-validation error and repeatability; it is not automatically a 95% confidence interval.
+
+## Project documentation
+
+- **Report:** see `docs/report/`
+- **Presentation:** see `docs/presentation/`
+- **Documentation index:** [docs/README.md](docs/README.md)
+
+## Potential next steps
+
+- Validate against independent reference heights and report repeatability across repeated runs.
+- Revisit the high-variation 40 mm calibration point.
+- Add a recorded sample run or short demonstration video showing capture, detection, and output.
+- Add automated tests for calibration-model loading, prediction boundaries, and CSV output.
+- Document the physical mounting dimensions and calibration procedure so another person can reproduce the setup.
+
+---
+
+<p align="center"><sub>Built around experimental measurement, computer vision, and calibration — with the supplied data and limitations documented alongside the results.</sub></p>
