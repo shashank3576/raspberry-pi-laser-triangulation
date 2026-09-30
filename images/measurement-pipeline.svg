@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+<title id="title">Laser triangulation measurement pipeline</title>
+<desc id="desc">A clean six-stage block diagram: camera capture, red spot detection, centroid estimation, reference displacement, calibration model, and height output.</desc>
+<defs>
+  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0b1525"/>
+    <stop offset="1" stop-color="#14263b"/>
+  </linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#ff596d"/>
+    <stop offset="1" stop-color="#ff8a6b"/>
+  </linearGradient>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#91a9c4"/>
+  </marker>
+</defs>
+<rect width="1200" height="340" rx="20" fill="url(#background)"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <text x="48" y="48" fill="#f4f7fb" font-size="22" font-weight="700">Measurement pipeline</text>
+  <text x="48" y="73" fill="#a8bad0" font-size="13">From camera image to calibrated height estimate</text>
+  <rect x="48" y="95" width="1104" height="1" fill="#6d86a2" opacity=".35"/>
+  <g>
+    <rect x="48" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
+    <rect x="236" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
+    <rect x="424" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
+    <rect x="612" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
+    <rect x="800" y="125" width="164" height="112" rx="12" fill="#1c3149" stroke="#63809e" stroke-width="1.3"/>
+    <rect x="988" y="125" width="164" height="112" rx="12" fill="#203d4b" stroke="#4c9b91" stroke-width="1.5"/>
+  </g>
+  <g fill="url(#accent)">
+    <rect x="48" y="125" width="164" height="4" rx="2"/>
+    <rect x="236" y="125" width="164" height="4" rx="2"/>
+    <rect x="424" y="125" width="164" height="4" rx="2"/>
+    <rect x="612" y="125" width="164" height="4" rx="2"/>
+    <rect x="800" y="125" width="164" height="4" rx="2"/>
+  </g>
+  <rect x="988" y="125" width="164" height="4" rx="2" fill="#55c6ad"/>
+  <g fill="#ff9a9f" font-size="11" font-weight="700" letter-spacing="1.2">
+    <text x="64" y="153">01 / INPUT</text><text x="252" y="153">02 / DETECT</text><text x="440" y="153">03 / LOCALISE</text><text x="628" y="153">04 / REFERENCE</text><text x="816" y="153">05 / CALIBRATE</text>
+  </g>
+  <text x="1004" y="153" fill="#82e0c9" font-size="11" font-weight="700" letter-spacing="1.2">06 / OUTPUT</text>
+  <g fill="#f4f7fb" font-size="15" font-weight="650">
+    <text x="64" y="184">Camera frame</text>
+    <text x="252" y="184">Red spot</text><text x="252" y="204">detection</text>
+    <text x="440" y="184">Centroid</text><text x="440" y="204">estimation</text>
+    <text x="628" y="184">Pixel shift</text><text x="628" y="204">Δx = x − x₀</text>
+    <text x="816" y="184">Rational model</text><text x="816" y="204">h = f(Δx)</text>
+    <text x="1004" y="184">Height estimate</text><text x="1004" y="204">in millimetres</text>
+  </g>
+  <g stroke="#91a9c4" stroke-width="2" marker-end="url(#arrow)" fill="none">
+    <path d="M214 181 H230"/><path d="M402 181 H418"/><path d="M590 181 H606"/><path d="M778 181 H794"/><path d="M966 181 H982"/>
+  </g>
+  <text x="48" y="278" fill="#b6c6d9" font-size="13">Reference subtraction reduces sensitivity to common image-position shifts.</text>
+  <text x="1152" y="278" fill="#83d9c3" font-size="13" text-anchor="end">Python · OpenCV · Raspberry Pi</text>
+  <text x="48" y="310" fill="#7189a4" font-size="11">Illustrative software workflow; not a mechanical or optical drawing.</text>
+</g>
+</svg>
