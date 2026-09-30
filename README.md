@@ -178,9 +178,8 @@ raspberry-pi-laser-triangulation/
 │   ├── laser_spot/
 │   └── measurement-pipeline.svg
 ├── docs/
-│   ├── report/
-│   ├── presentation/
 │   ├── README.md
+│   ├── FILE_ORGANIZATION_NOTES.md
 │   └── TECHNICAL_OVERVIEW.md
 ├── requirements.txt
 └── README.md
@@ -207,12 +206,9 @@ raspberry-pi-laser-triangulation/
 
 Useful next steps are independent validation, repeatability testing across sessions, automated tests for model loading and prediction boundaries, and a short real demonstration video.
 
-## Documentation
+## Technical documentation
 
-- [Project report](docs/report/)
-- [Project presentation](docs/presentation/)
-- [Documentation index](docs/README.md)
-- [Technical overview](docs/TECHNICAL_OVERVIEW.md)
+- [Technical overview](docs/TECHNICAL_OVERVIEW.md) — processing stages, calibration model, uncertainty calculation, data flow, and reproducibility notes.
 
 ---
 
