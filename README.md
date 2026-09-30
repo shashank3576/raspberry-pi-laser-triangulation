@@ -1,6 +1,6 @@
 # Raspberry Pi Laser Triangulation
 
-**Non-contact height estimation using laser-spot displacement, computer vision, and experimental calibration.**
+**A non-contact height measurement system based on laser triangulation, camera geometry, and experimental calibration.**
 
 <p align="center">
   <img src="images/measurement-pipeline.svg" alt="Six-stage measurement pipeline from camera capture to calibrated height estimate" width="100%">
@@ -9,7 +9,7 @@
 <p align="left">
   <img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%204-C51A4A?logo=raspberrypi&logoColor=white" alt="Platform: Raspberry Pi 4">
   <img src="https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white" alt="Language: Python">
-  <img src="https://img.shields.io/badge/Vision-OpenCV-5C3EE8?logo=opencv&logoColor=white" alt="Computer vision: OpenCV">
+  <img src="https://img.shields.io/badge/Measurement-Laser%20Triangulation-BC4B51" alt="Laser triangulation">
   <img src="https://img.shields.io/badge/Calibration-0%E2%80%9350%20mm-2E8B57" alt="Calibration range: 0 to 50 mm">
 </p>
 
@@ -17,9 +17,9 @@
 
 ---
 
-## Overview
+## System overview
 
-This project estimates an object's height from the horizontal displacement of a red laser spot in images captured by a Raspberry Pi camera. The pipeline detects the spot, estimates its centroid, measures displacement relative to a fresh 0 mm reference, and converts that displacement into height using a fitted calibration model.
+This system estimates object height by measuring the movement of a projected laser spot in a camera image. A Raspberry Pi captures the image, software locates the spot, and a calibration model converts measured pixel displacement into physical height.
 
 <p align="center">
   <img src="images/laser_spot/Set%20up%20photo.jpg" alt="Physical Raspberry Pi laser triangulation setup" width="760">
@@ -38,15 +38,15 @@ This project estimates an object's height from the horizontal displacement of a 
 | **Calibration interval** | 0–50 mm |
 | **Core tools** | Python · OpenCV · NumPy · SciPy · Matplotlib · Picamera2 |
 
-## Method
+## Measurement principle
 
 The diagram above summarises the software pipeline. In practice, the program captures an image, detects the red-dominant laser region inside the configured region of interest, estimates the spot centroid, calculates horizontal displacement from the current 0 mm reference, evaluates the saved calibration model, and records measurements to CSV.
 
 The system is sensitive to changes in mounting, focus, illumination, and camera settings. Recalibrate after significant changes to the physical setup.
 
-## Setup and image references
+## Mechanical design and spot examples
 
-The following are photographs and design references from the project, rather than decorative stock imagery.
+The following photographs and design references document the physical measurement setup.
 
 ### Triangulation geometry
 
@@ -149,7 +149,9 @@ raspberry-pi-laser-triangulation/
 │   ├── figures/calibration/
 │   ├── measurements/
 │   └── tables/
-├── images/laser_spot/
+├── images/
+│   ├── laser_spot/
+│   └── measurement-pipeline.svg
 ├── docs/
 │   ├── report/
 │   ├── presentation/
@@ -189,4 +191,4 @@ Useful next steps are independent validation, repeatability testing across sessi
 
 ---
 
-<sub>Project focus: experimental measurement · computer vision · calibration · reproducibility</sub>
+<sub>Focus areas: optical measurement · embedded instrumentation · calibration · experimental characterisation</sub>
